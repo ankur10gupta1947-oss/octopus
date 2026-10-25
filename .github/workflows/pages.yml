@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - run: cargo run --bin export
+      - run: cargo run --bin premium
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
