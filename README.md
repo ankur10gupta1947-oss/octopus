@@ -1,26 +1,46 @@
-# StreamVerse — Open-source video platform preview
+# StreamVerse 🦀
 
-A responsive, dark-themed prototype of a self-hostable video platform.
+A Rust-first open-source video platform starter. This edition uses **Axum** for the web server and renders every page on the server using Rust. It has **nine seeded mock videos** to explore the site before connecting a database or video storage.
 
-**This repository is currently a visual demo only.** All video thumbnails/titles are fictional. Uploads, accounts, playback and backend storage are not enabled.
+## Run locally
 
-## Preview
+Install a recent stable Rust toolchain, then run:
 
-Open `index.html` locally, or enable **GitHub Pages → Build and deployment → GitHub Actions** in the repository Settings to publish the site.
+```sh
+cargo run
+```
 
-## Future architecture
+Open http://localhost:3000.
 
-- Next.js / React frontend
-- Supabase for authentication, channels, and video metadata
-- Optional [9Drive](https://github.com/zenhosta/9drive) adapter to pool Google Drive storage
-- Configurable backends for video hosting and playback
+## Deploy
 
-Google Drive pooling may face quotas, bandwidth limits, and terms-of-service restrictions. The demo makes no guarantees about storage capacity or streaming viability.
+The app needs an always-on Rust server; **GitHub Pages cannot run the backend**.
 
-## Contributing
+```sh
+docker build -t streamverse .
+docker run --rm -p 3000:3000 streamverse
+```
 
-Issues and pull requests are welcome. Do not commit OAuth secrets, API keys, or account tokens.
+Deploy the Docker container to a Rust/Docker-compatible host with port `3000` (or set `PORT`).
+
+## What works today
+
+- Real Rust/Axum HTTP application
+- Responsive pages: home, watch details, channels, creator studio
+- Server-side search and category filters
+- Nine seeded example videos in Rust
+- Video routes with descriptions and related content
+- Docker deployment configuration
+
+## What is **not** built yet
+
+- Actual video playback/uploads (all current items are **mock data**)
+- Persistence, login, channels owned by users, likes, comments
+- 9Drive / Google Drive storage adapter
+- Video transcoding and adaptive streaming
+
+No cloud credentials are required or used in this version. The next stages are authentication + SQL storage metadata + configurable 9Drive adapter with quotas and abuse controls. This is not yet production-ready for user-generated uploads.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
